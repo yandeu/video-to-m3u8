@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="./lib/videojs/video-js.css" rel="stylesheet" />
+  </head>
+  <body>
+    <style>
+      .video-wrapper {
+        max-width: 600px;
+        /* margin: 0 auto; */
+      }
+      .video-js {
+        aspect-ratio: 16 / 9;
+        width: 100%;
+        height: auto;
+      }
+    </style>
+
+    <h1>m3u8 stream test</h1>
+    <div class="video-wrapper">
+      <video class="video-js" preload="auto" controls data-setup="{}">
+        <source src="./out/playlist.m3u8" type="application/x-mpegURL" />
+      </video>
+    </div>
+    <script src="./lib/videojs/video.min.js"></script>
+  </body>
+</html>
