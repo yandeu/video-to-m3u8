@@ -11,3 +11,7 @@ mkdir ./out
 ffmpeg -i "./video/$thefile" -c:v libx264 -c:a aac -vf 'scale=if(gte(iw\,ih)\,min(1280\,iw)\,-2):if(lt(iw\,ih)\,min(1280\,ih)\,-2)' ./tmp/tmp.mp4 -y
 
 ffmpeg -i ./tmp/tmp.mp4  -codec: copy -start_number 0 -hls_time 10 -hls_list_size 0 -f hls ./out/playlist.m3u8
+
+# create thumbnail
+ffmpeg -ss 00:00:00 -i ./tmp/tmp.mp4 -frames:v 1 -q:v 2 ./out/thumbnail.jpg -y
+convert -quality 65% ./out/thumbnail.jpg ./out/thumbnail.jpg
