@@ -2,6 +2,7 @@
 
 thefile="BigBuckBunny.mp4"
 
+rm -rf ./tmp ./out
 mkdir ./tmp
 mkdir ./out
 
@@ -14,13 +15,16 @@ ffmpeg -i "./video/$thefile" -c:v libx264 -c:a aac -vf 'scale=if(gte(iw\,ih)\,mi
 
 ffmpeg -i "./tmp/tmp.mp4" \
   -map 0:v:0 -map 0:a:0 -map 0:v:0 -map 0:a:0 -map 0:v:0 -map 0:a:0 \
-  -c:v libx264 -crf 22 -c:a copy \
+  -c:v libx264 -c:a copy \
+  -crf:v:0 30 \
+  -crf:v:1 26 \
+  -crf:v:1 22 \
   -filter:v:0 scale=w=480:h=360 -maxrate:v:0 1M \
   -filter:v:1 scale=w=640:h=480 -maxrate:v:1 2M \
   -filter:v:2 scale=w=1280:h=720 -maxrate:v:2 5M \
   -var_stream_map "v:0,a:0,name:360p v:1,a:1,name:480p v:2,a:2,name:720p" \
-  -preset fast -hls_list_size 10 -threads 0 -f hls \
-  -hls_time 3 -hls_flags independent_segments \
+  -preset fast -start_number 0 -hls_list_size 0 -threads 0 -f hls \
+  -hls_time 5 -hls_flags independent_segments \
   -master_pl_name "playlist.m3u8" \
   -y "./out/playlist-%v.m3u8"
 
