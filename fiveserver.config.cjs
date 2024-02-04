@@ -1,3 +1,4 @@
 module.exports = {
-  ignore: ['tmp']
+  ignore: ['tmp'],
+  open: 'index.html'
 }
