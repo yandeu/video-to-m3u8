@@ -17,7 +17,7 @@ ffmpeg -i "./video/$thefile" \
   -c:v libx264 -c:a aac -pix_fmt yuv420p -crf 25 \
   -map 0:v:0 -map 0:a:0 -map 0:v:0 -map 0:a:0 -map 0:v:0 -map 0:a:0 -map 0:v:0 -map 0:a:0 \
   -filter:v:0 "fps=14.99, scale=480:270" -b:v:0 400k -maxrate:0 428k -bufsize:0 600k -b:a:0 64k -crf:v:0 36 \
-  -filter:v:1 "fps=29.97, scale=640:360" -b:v:1 800k -maxrate:1 856 -bufsize:1 1200k -crf:v:0 36 \
+  -filter:v:1 "fps=29.97, scale=640:360" -b:v:1 800k -maxrate:1 856 -bufsize:1 1200k -b:a:0 96k \
   -filter:v:2 "fps=29.97, scale=960:540" -b:v:2 1350k -maxrate:2 1444k -bufsize:2 2025k \
   -filter:v:3 "fps=29.97, scale=1280:720" -b:v:3 3000k -maxrate:3 3210k -bufsize:3 4500k \
   -var_stream_map "v:0,a:0,name:270p v:1,a:1,name:360p v:2,a:2,name:540p v:3,a:3,name:720p" \
