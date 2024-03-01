@@ -42,7 +42,8 @@
                 autoStartLoad: false,
                 capLevelToPlayerSize: true,
                 ignoreDevicePixelRatio: false,
-                capLevelOnFPSDrop: true
+                capLevelOnFPSDrop: true,
+                abrEwmaDefaultEstimate: 2_000_000
               })
               v.addEventListener('play', () => hls.startLoad(), { once: true })
               hls.loadSource(m3u8.src)
