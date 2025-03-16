@@ -27,6 +27,7 @@ ffmpeg -i "./video/$thefile" \
   -hls_playlist_type vod \
   -hls_flags independent_segments \
   -hls_segment_type mpegts \
+  -muxdelay 0 \
   -master_pl_name "playlist.m3u8" \
   -y "./out/playlist-%v.m3u8"
 
